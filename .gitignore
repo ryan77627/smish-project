@@ -10,3 +10,6 @@ creds.py
 
 # Log Testing
 *.logs
+
+# Python venv
+env/
