@@ -1,1 +1,12 @@
+# Python Hidden
 __pycache__
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+
+# Creds
+creds.py
+
+# Log Testing
+*.logs
