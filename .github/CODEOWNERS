@@ -1,0 +1,15 @@
+# Default Owners
+*    @ryan77627 @aorps @chikao28
+
+# backend
+/backend/   @ryan77627
+
+# frontend
+/frontend/  @chikao28
+
+# twilio 
+/front-end/ @aorps
+
+# tool + infra
+/playbook/  @aorps
+/tool/      @aorps
