@@ -1,0 +1,19 @@
+---
+- name: Install or Update Dependencies for Server
+  hosts: localhost
+
+  tasks:
+    - name: Install or Update 'python3-pip'
+      ansible.builtin.apt:
+        name: python3-pip
+        state: latest
+
+    - name: Install or Update 'nginx'
+      ansible.builtin.apt:
+        name: nginx
+        state: latest
+
+    - name: Install or Update 'clang'
+      ansible.builtin.apt:
+        name: clang
+        state: latest
