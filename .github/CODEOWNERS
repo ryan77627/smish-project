@@ -8,7 +8,7 @@
 /frontend/  @chikao28
 
 # twilio 
-/front-end/ @aorps
+/twilio/ @aorps
 
 # tool + infra
 /playbook/  @aorps
