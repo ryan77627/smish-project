@@ -1,14 +1,24 @@
 #!/usr/bin/env python3
 from creds import T_SID, T_TOKEN, SenderNumber
 from twilio.rest import Client
+from twilio.twiml.messaging_response import MessagingResponse
 
-
-# send_sms: sms message
+# send_sms: send sms messages
 def send_sms(client, body: str, sender: str, receiver: str):
+    # default send via sms
     client.messages.create(body=body,from_=sender,to=receiver)
 
+# TODO: fill out webhook / endpoint for both twilio and sanic thing
+
+# docs: https://www.twilio.com/docs/sms/tutorials/how-to-receive-and-reply-python
+# receive_sms: how to receive and handle sms messages
 def receive_sms():
-    pass
+    # agent that takes in sms messages
+    resp = MessagingResponse()
+    # response to incoming sms messages
+    resp.message("asdf")
+    # return a string of the response
+    return str(resp)
 
 if __name__ == "__main__":
     client = Client(T_SID, T_TOKEN)
