@@ -10,10 +10,8 @@ def main():
 
     app = Sanic("endpoint-listener")
 
-    @app.route('/submit-smish')
-    async def handler(request):
-        return submitSmish.submit(request) # There may be better ways to do this, may refactor later on with actual classes?
-
+    # Submit phish route
+    app.add_route(submitSmish.View.as_view(), '/submit-smish')
     
     # We are ready, deploy!
     app.run(host='0.0.0.0', port=1234, access_log=False, workers=2)
