@@ -3,6 +3,8 @@
 # Smishing Server entrypoint
 
 ######################
+import sys
+sys.path.append('../')
 from sanic import Sanic
 import backend.submitSmish as submitSmish
 

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-from creds import T_SID, T_TOKEN, SenderNumber
+from backend.twilio.creds import T_SID, T_TOKEN, SenderNumber
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
 # send_sms: send sms messages
-def send_sms(client, body: str, sender: str, receiver: str):
+def send_sms(body: str, sender: str, receiver: str):
     # default send via sms
+    client = Client(T_SID, T_TOKEN)
     client.messages.create(body=body,from_=sender,to=receiver)
 
 # TODO: fill out webhook / endpoint for both twilio and sanic thing
@@ -21,5 +22,4 @@ def receive_sms():
     return str(resp)
 
 if __name__ == "__main__":
-    client = Client(T_SID, T_TOKEN)
-    print(type(client)) 
+    send_sms('', "Test msg", SenderNumber, "8453213926")

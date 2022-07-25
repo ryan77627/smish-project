@@ -1,5 +1,8 @@
 from sanic import Sanic, text
 from sanic.views import HTTPMethodView
+from backend.twilio import main as twilio
+from backend.twilio.creds import SenderNumber
+import json
 # Module that is called when '/submit-smish' is POSTed to
 
 class View(HTTPMethodView):
@@ -9,8 +12,14 @@ class View(HTTPMethodView):
 
     async def post(self, req):
         # Debug print
-        print(req.json)
-        return text("That was a POST!")
+        req = req.json
+        print(req)
+        try:
+            twilio.send_sms(req["msg"], SenderNumber, req['to'])
+            return text("Successful!")
+        except Exception as e:
+            print(e)
+            return text("SMS send failure!")
 
     async def get(self, req):
         # Test case
