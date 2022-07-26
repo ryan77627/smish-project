@@ -17,3 +17,8 @@
       ansible.builtin.apt:
         name: clang
         state: latest
+
+    - name: Install or Update 'golang'
+      ansible.builtin.apt:
+        name: golang-go
+        state: latest
