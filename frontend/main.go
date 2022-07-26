@@ -11,7 +11,7 @@ import (
 
 const (
 	PORT = 8080
-	TPL  = "templates/*.html"
+	TPL  = "template/*.html"
 )
 
 func console(w http.ResponseWriter, r *http.Request) {
