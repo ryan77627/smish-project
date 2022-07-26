@@ -7,10 +7,14 @@ import sys
 sys.path.append('../')
 from sanic import Sanic
 import backend.submitSmish as submitSmish
+import backend.userStore as userStore
 
 def main():
 
     app = Sanic("endpoint-listener")
+
+    # Initialize any users in the DB
+    userStore = userStore.UserStore()
 
     # Submit phish route
     app.add_route(submitSmish.View.as_view(), '/submit-smish')
