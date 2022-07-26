@@ -15,9 +15,9 @@ class View(HTTPMethodView):
     async def post(self, req):
         req = req.json
         # Parse the message to be the message with the URL
-        msg = req['msg'].format(BASE_DOMAIN + endpoints.gen_url())
+        msg = req['msg'].format(URL = BASE_DOMAIN + endpoints.gen_url())
         try:
-            twilio.Send(req["to"], req['msg'])
+            twilio.Send(req["to"], msg)
             return text("Successful!")
         except Exception as e:
             print(e)
