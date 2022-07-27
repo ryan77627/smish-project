@@ -14,5 +14,11 @@ creds.py
 
 # Python venv
 env/
+<<<<<<< HEAD
 test*
 phish_db
+=======
+
+# Compiled
+main.o
+>>>>>>> fe-draft

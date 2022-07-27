@@ -1,0 +1,84 @@
+{{block "sidebar" .}}
+<div class="h-100 p-3 d-flex flex-column flex-shrink-0 text-white bg-dark">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span class="fs-4">Smish</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link text-white">
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/ryan77627/smish-project" class="nav-link text-white">Documentation</a>
+        </li>
+    </ul>
+    <hr>
+</div>
+{{end}}
+
+{{block "network" .}}
+<div id="networkviz"></div>
+<script type="text/javascript">
+    // create an array with nodes
+    var nodes = new vis.DataSet([
+        { id: 1, label: 'Bred' },
+        { id: 2, label: 'Node 2' },
+        { id: 3, label: 'Node 3' },
+        { id: 4, label: 'Node 4' },
+        { id: 5, label: 'Node 5' }
+    ]);
+
+    // create an array with edges
+    var edges = new vis.DataSet([
+        { from: 1, to: 3 },
+        { from: 1, to: 2 },
+        { from: 2, to: 4 },
+        { from: 2, to: 5 },
+        { from: 3, to: 3 }
+    ]);
+
+    // create a network
+    var container = document.getElementById('networkviz');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {};
+    var network = new vis.Network(container, data, options);
+    network.fit();
+</script>
+{{end}}
+
+{{block "bargraph" .}}
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+<script>
+    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    var yValues = [55, 49, 44, 24, 15];
+    var barColors = ["red", "green", "blue", "orange", "rgba(0,0,255,0.2)"];
+
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Metrics"
+            }
+        }
+    });
+</script>
+{{end}}
