@@ -15,6 +15,7 @@ const (
 )
 
 func root(w http.ResponseWriter, r *http.Request) {
+
 	tpl := template.Must(template.ParseGlob(TPL))
 	tpl.ExecuteTemplate(w, "main", nil)
 }
@@ -35,6 +36,7 @@ func main() {
 	http.HandleFunc("/", root)
 	http.HandleFunc("/console", console)
 	http.HandleFunc("/preview", preview)
+
 
 	fmt.Printf("Running on\nhttp://localhost:%s\n", port)
 
