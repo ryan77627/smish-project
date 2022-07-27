@@ -14,11 +14,9 @@ creds.py
 
 # Python venv
 env/
-<<<<<<< HEAD
+
 test*
 phish_db
-=======
 
 # Compiled
 main.o
->>>>>>> a03d776 (unstage executable)
