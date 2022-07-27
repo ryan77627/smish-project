@@ -23,6 +23,3 @@ class View(HTTPMethodView):
             print(e)
             return text("SMS send failure!")
 
-    async def get(self, req):
-        # Test case
-        return text("This is a GET!")

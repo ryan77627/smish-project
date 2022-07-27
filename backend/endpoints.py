@@ -31,7 +31,7 @@ def open_db(phish_campaign):
             # File doesn't exist, create a new campaign db and track it
             phish_db = dict()
 
-    with open('phish_campaigns.db', 'rb+') as e:
+    with open('phish_db/phish_campaigns.db', 'rb+') as e:
         try:
             db = pickle.load(e)
         except EOFError:
