@@ -24,6 +24,7 @@ func console(w http.ResponseWriter, r *http.Request) {
 	tpl.ExecuteTemplate(w, "admin-console", nil)
 }
 
+
 func preview(w http.ResponseWriter, r *http.Request) {
 	tpl := template.Must(template.ParseGlob(TPL))
 	tpl.ExecuteTemplate(w, "preview", nil)
