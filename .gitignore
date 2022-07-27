@@ -14,3 +14,5 @@ creds.py
 
 # Python venv
 env/
+test*
+phish_db
