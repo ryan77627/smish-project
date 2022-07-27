@@ -14,23 +14,19 @@ const (
 	TPL  = "template/*.html"
 )
 
-func console(w http.ResponseWriter, r *http.Request) {
+func root(w http.ResponseWriter, r *http.Request) {
 	tpl := template.Must(template.ParseGlob(TPL))
 	tpl.ExecuteTemplate(w, "main", nil)
+}
+
+func console(w http.ResponseWriter, r *http.Request) {
+	tpl := template.Must(template.ParseGlob(TPL))
+	tpl.ExecuteTemplate(w, "admin-console", nil)
 }
 
 func preview(w http.ResponseWriter, r *http.Request) {
 	tpl := template.Must(template.ParseGlob(TPL))
-	tpl.ExecuteTemplate(w, "main", nil)
-}
-
-func sign(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "yes")
-}
-
-func root(w http.ResponseWriter, r *http.Request) {
-	tpl := template.Must(template.ParseGlob(TPL))
-	tpl.ExecuteTemplate(w, "main", nil)
+	tpl.ExecuteTemplate(w, "preview", nil)
 }
 
 func main() {
@@ -39,7 +35,6 @@ func main() {
 	http.HandleFunc("/", root)
 	http.HandleFunc("/console", console)
 	http.HandleFunc("/preview", preview)
-	http.HandleFunc("/sign", sign)
 
 	fmt.Printf("Running on\nhttp://localhost:%s\n", port)
 
