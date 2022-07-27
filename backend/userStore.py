@@ -68,7 +68,10 @@ class UserStore:
         
         if parent:
             # Now we just need to add this user to the employees of the given parent (if any). This will avoid unnecessary re-calcs of the org
-            parent = self.lookup_user(parent)
+            if type(parent) is str:
+                parent = self.lookup_user(parent)
+            elif type(parent) is int:
+                parent = self.get_user(parent)
             parent.add_employee(new_user)
         else:
             # This is a top level user, add to tree directly
