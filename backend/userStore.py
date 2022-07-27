@@ -3,7 +3,7 @@ import pickle
 
 class User:
     # Class to represent a user. Essentially a struct
-    def __init__(self, uid, name, phonenum, parent=None):
+    def __init__(self, uid, name, phonenum, parent=None, photo=None):
         # We are going to store as many things as user objects as possible in this
         # to avoid unnecessary references to the tree structure
         # By doing this, we can essentially go back and forth due to
@@ -13,6 +13,7 @@ class User:
         self.phonenum = phonenum
         self.employees = [] # Initially empty, will populate during user addition
         self.parent = parent
+        self.photo = photo
 
     def add_employee(self, user):
         self.employees.append(user)
@@ -53,7 +54,7 @@ class UserStore:
         # Given a name, find the associated user. Assuming no duplicate names here.
         return self.__name_lookup_tree[name]
 
-    def add_user(self, name, phonenum, parent=None):
+    def add_user(self, name, phonenum, parent=None, photo=None):
         # This will add a user to the tree. Required params are name and phone number. Optional is parent (represented by name)
         # If specified, it will add this user to the employees
         # of the parent specified. If not, it will be located at the top of the tree.
@@ -61,7 +62,7 @@ class UserStore:
         
         # We need to do a few things: create the user object, add it to the tree in the proper location, and add it to the user
         # objs dict. Everything *should* stay in sync when done.
-        new_user = User(uid, name, phonenum, parent)
+        new_user = User(uid, name, phonenum, parent, photo)
         self.user_objs[uid] = new_user
         self.__name_lookup_tree[name] = new_user
         
