@@ -4,4 +4,5 @@ from sanic.views import HTTPMethodView
 class recordClick(HTTPMethodView):
     async def get(self, req, id):
         print(f"{id}")
+        return response.redirect('/login')
 

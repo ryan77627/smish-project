@@ -9,6 +9,7 @@ from sanic import Sanic
 import backend.submitSmish as submitSmish
 import backend.userStore as userStore
 import backend.api as api
+import backend.login_handler as login_handler
 
 # Initialize any users in the DB
 us = userStore.UserStore()
