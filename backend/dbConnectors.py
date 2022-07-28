@@ -52,7 +52,10 @@ class phishDB:
             pickle.dump(self.__db, e)
 
     def getCampaignDetails(self):
-        return self.__db
+        return {"usersClickedCount":self.__db["usersClickedCount"],
+                "usersClicked":self.__db["usersClicked"],
+                "usersPostedCount":self.__db["usersPostedCount"],
+                "usersPosted":self.__db["usersPosted"]}
 
     def addEndpoint(self, uid, endpoint):
         self.__db[endpoint] = uid
