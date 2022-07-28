@@ -25,6 +25,11 @@ def main():
     # Submit frontend gen user tree route
     app.add_route(api.genTree.as_view(), '/api/genTree')
 
+    # Submit frontend get phishing campaigns route
+    app.add_route(api.getCampaigns.as_view(), '/api/getCampaigns')
+    app.add_route(api.getCampaignDetails.as_view(), '/api/getCampaignDetails')
+    app.add_route(api.getUser.as_view(), '/api/getUser')
+
     # Route to mark a successful smish
     #@app.get("/login/<id>")
     #async def handler(req, id):
