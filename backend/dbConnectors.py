@@ -34,9 +34,35 @@ class phishDB:
                 self.__db = pickle.load(e)
             except FileNotFoundError:
                 self.__db = {}
+                self.__db["usersClickedCount"] = 0
+                self.__db["usersClicked"] = []
+                self.__db["usersPostedCount"] = 0
+                self.__db["usersPosted"] = []
 
     def getCampaignDetails(self):
         return self.__db
 
     def addEndpoint(self, uid, endpoint):
         self.__db[endpoint] = uid
+
+    def getUsersClickedCount(self):
+        return self.__db["usersClickedCount"]
+
+    def getUsersClicked(self):
+        return self.__db["usersClicked"]
+
+    def getUsersPostedCount(self):
+        return self.__db["usersPostedCount"]
+
+    def getUsersPosted(self):
+        return self.__db["usersPosted"]
+
+    def userClicked(self, endpoint):
+        uid = self.__db[endpoint]
+        self.__db["usersClickedCount"] += 1
+        self.__db["usersClicked"].append(uid)
+
+    def userPosted(self, endpoint):
+        uid = self.__db[endpoint]
+        self.__db["usersPostedCount"] += 1
+        self.__db["usersPosted"].append(uid)
