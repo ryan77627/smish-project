@@ -18,7 +18,7 @@ class View(HTTPMethodView):
         # Parse the message to be the message with the URL
         msg = req['msg'].format(URL = BASE_DOMAIN + endpoints.gen_url(req['uid']))
         try:
-            twilio.Send(us.get_user(req['uid']).phonenum, msg)
+            twilio.Send(config.us.get_user(req['uid']).phonenum, msg)
             return text("Successful!")
             #return text(msg)
         except Exception as e:
