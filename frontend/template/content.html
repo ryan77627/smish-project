@@ -5,16 +5,13 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
+        {{range .Navs}}
         <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-                Home
-            </a>
-        </li>
-        <li>
             <a href="#" class="nav-link text-white">
-                Dashboard
+                {{.}}
             </a>
         </li>
+        {{end}}
         <li>
             <a href="https://github.com/ryan77627/smish-project" class="nav-link text-white">Documentation</a>
         </li>
@@ -25,6 +22,7 @@
 
 {{block "network" .}}
 <div id="networkviz"></div>
+<p>{{.Hi}}</p>
 <script type="text/javascript">
     // create an array with nodes
     var nodes = new vis.DataSet([
@@ -32,7 +30,8 @@
         { id: 2, label: 'Node 2' },
         { id: 3, label: 'Node 3' },
         { id: 4, label: 'Node 4' },
-        { id: 5, label: 'Node 5' }
+        { id: 5, label: 'Node 5' },
+        { id: 6, label: 'Node 6'}
     ]);
 
     // create an array with edges
@@ -41,7 +40,7 @@
         { from: 1, to: 2 },
         { from: 2, to: 4 },
         { from: 2, to: 5 },
-        { from: 3, to: 3 }
+        { from: 3, to: 6 }
     ]);
 
     // create a network
@@ -58,10 +57,11 @@
 
 {{block "bargraph" .}}
 <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+<p>{{.Hi}}</p>
 <script>
-    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yValues = [55, 49, 44, 24, 15];
-    var barColors = ["red", "green", "blue", "orange", "rgba(0,0,255,0.2)"];
+    var xValues = ["Italy", "France", "Spain", "USA", "Argentina", ""];
+    var yValues = [55, 49, 44, 24, 15, 10];
+    var barColors = ["red", "rgba(0,0,255,0.2)", "blue", "orange", "rgba(0,0,255,0.2)", ""];
 
     new Chart("myChart", {
         type: "bar",

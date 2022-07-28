@@ -27,20 +27,20 @@
         <div class="row h-100">
             <!-- Sidebar -->
             <div class="col-3">
-                {{template "sidebar"}}
+                {{template "sidebar" .Sidebar}}
             </div>
             <!-- Visuals -->
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        {{template "network"}}
+                        {{template "network" .Network}}
                     </div>
                     <div class="col">
                         <p>span</p>
                     </div>
                 </div>
                 <div class="row" style="text-align: center;">
-                    {{template "bargraph"}}
+                    {{template "bargraph" .Bargraph}}
                 </div>
             </div>
         </div>
