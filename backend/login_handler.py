@@ -4,6 +4,8 @@ import backend.dbConnectors as dbConnectors
 
 class recordClick(HTTPMethodView):
     async def get(self, req, id):
+        # Detect if iMessage preview
+        print(req.headers.get("User-Agent"))
         print(f"GET for endpoint: {id}")
         resp = response.redirect('/login')
         resp.cookies['phid'] = id
