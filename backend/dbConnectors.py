@@ -2,11 +2,11 @@ import pickle
 
 class campaignDB:
     def __init__(self):
-        with open('phish_db/phish_campaigns.db', 'rb+') as e:
-            try:
+        try:
+            with open('phish_db/phish_campaigns.db', 'rb+') as e:
                 self.__db = pickle.load(e)
-            except FileNotFoundError:
-                self.__db = {}
+        except FileNotFoundError:
+            self.__db = {}
 
     def __del__(self):
         with open('phish_db/phish_campaigns.db', 'wb+') as e:
@@ -23,21 +23,33 @@ class campaignDB:
 
     def addEndpointID(self, campaignID, endpointID):
         if campaignID in self.__db:
-            self.__db[campaignID].append("endpointID")
+            self.__db[campaignID].append(endpointID)
         else:
             raise ValueError("Campaign ID not initialized.")
 
+    def findCampaign(self, endpoint):
+        print(self.__db)
+        # Given an endpoint, return its campaign
+        for campaign in self.__db.keys():
+            if endpoint in self.__db[campaign]:
+                return campaign
+
 class phishDB:
     def __init__(self, campaign_id):
-        with open(f'phish_db/{campaign_id}.db', 'rb+') as e:
-            try:
+        self.__campaign_id = campaign_id
+        try:
+            with open(f'phish_db/{campaign_id}.db', 'rb+') as e:
                 self.__db = pickle.load(e)
-            except FileNotFoundError:
-                self.__db = {}
-                self.__db["usersClickedCount"] = 0
-                self.__db["usersClicked"] = []
-                self.__db["usersPostedCount"] = 0
-                self.__db["usersPosted"] = []
+        except FileNotFoundError:
+            self.__db = {}
+            self.__db["usersClickedCount"] = 0
+            self.__db["usersClicked"] = []
+            self.__db["usersPostedCount"] = 0
+            self.__db["usersPosted"] = []
+
+    def __del__(self):
+        with open(f'phish_db/{self.__campaign_id}.db', 'wb+') as e:
+            pickle.dump(self.__db, e)
 
     def getCampaignDetails(self):
         return self.__db
@@ -58,6 +70,7 @@ class phishDB:
         return self.__db["usersPosted"]
 
     def userClicked(self, endpoint):
+        print(self.__db)
         uid = self.__db[endpoint]
         self.__db["usersClickedCount"] += 1
         self.__db["usersClicked"].append(uid)

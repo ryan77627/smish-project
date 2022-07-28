@@ -15,8 +15,8 @@ def gen_url(uid):
     # Ensure our campaign exists
     phishcampaign_db.addCampaign(campaign_id)
     rand_string = ''.join(random.choices(string.ascii_letters, k=5))
-    phish_db = dbConnectors.phishDB()
-    phish_db.add_endpoint(uid, randstring)
+    phish_db = dbConnectors.phishDB(campaign_id)
+    phish_db.addEndpoint(uid, rand_string)
     phishcampaign_db.addEndpointID(campaign_id, rand_string)
 
     ret_url = '/login/' + rand_string
