@@ -73,12 +73,13 @@ class phishDB:
         return self.__db["usersPosted"]
 
     def userClicked(self, endpoint):
-        print(self.__db)
         uid = self.__db[endpoint]
-        self.__db["usersClickedCount"] += 1
-        self.__db["usersClicked"].append(uid)
+        if uid not in self.__db["usersClicked"]: # Avoid double count
+            self.__db["usersClickedCount"] += 1
+            self.__db["usersClicked"].append(uid)
 
     def userPosted(self, endpoint):
         uid = self.__db[endpoint]
-        self.__db["usersPostedCount"] += 1
-        self.__db["usersPosted"].append(uid)
+        if uid not in self.__db["usersPosted"]:
+            self.__db["usersPostedCount"] += 1
+            self.__db["usersPosted"].append(uid)
