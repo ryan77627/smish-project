@@ -18,22 +18,36 @@ class genTree(HTTPMethodView):
         user_name = req.args["user"][0]
         user = us.lookup_user(user_name)
 
-        return response.json(self.__create_json(user))
+        try:
+            if req.args["directReportsOnly"][0] == "true":
+                return response.json(self.__create_json_single(user))
+            else:
+                return response.json(self.__create_json(user))
+        except KeyError:
+            # optional param not specified
+            return response.json(self.__create_json(user))
 
     def __create_json(self, user,depth=1):
         if not user.employees:
             if depth == 1:
-                return {'name': user.name, 'employees': []}
+                return {'uid':user.uid, 'name': user.name, 'employees': []}
             return []
         else:
             emp = []
             for e in user.employees:
-                emp.append({'name':e.name, 'employees':self.__create_json(e,depth+1)})
+                emp.append({'uid':e.uid, 'name':e.name, 'employees':self.__create_json(e,depth+1)})
 
             if depth == 1:
-                return {'name':user.name, "employees": emp}
+                return {'uid':user.uid, 'name':user.name, "employees": emp}
             else:
                 return emp
+
+    def __create_json_single(self, user):
+        emp = []
+        for e in user.employees:
+            emp.append({'uid':e.uid, 'name':e.name})
+
+        return {'uid':user.uid, 'name':user.name, 'employees': emp}
 
 class getCampaigns(HTTPMethodView):
     async def get(self, req):
