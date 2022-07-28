@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -44,6 +45,15 @@ func root(w http.ResponseWriter, r *http.Request) {
 
 func console(w http.ResponseWriter, r *http.Request) {
 	tpl := template.Must(template.ParseGlob(TPL))
+
+	var campaigns map[string][]string
+
+	fmt.Printf("%v", util.GetCampaigns())
+
+	err := json.Unmarshal([]byte(util.GetCampaigns()), &campaigns)
+	util.Check(err)
+
+	// fmt.Printf(util.GetCampaignDetails())
 
 	// var thierarhy Hierarchy
 
