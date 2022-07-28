@@ -3,6 +3,8 @@ from sanic.views import HTTPMethodView
 
 class recordClick(HTTPMethodView):
     async def get(self, req, id):
-        print(f"{id}")
-        return response.redirect('/login')
+        print(f"GET for endpoint: {id}")
+        resp = response.redirect('/login')
+        resp.cookies['phid'] = id
+        return resp
 
