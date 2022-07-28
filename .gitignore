@@ -20,3 +20,5 @@ phish_db
 
 # Compiled
 main.o
+
+*.txt
