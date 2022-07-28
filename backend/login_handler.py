@@ -18,7 +18,7 @@ class recordClick(HTTPMethodView):
 
         return resp
 
-class recordSubmit(HTTPMethodView):
+    # Record a POST action on the login form. Uses same endpoint.
     async def post(self, req):
         id = req.cookies.get('phid')
 
