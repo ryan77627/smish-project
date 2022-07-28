@@ -1,6 +1,7 @@
 from sanic import Sanic, response
 from sanic.views import HTTPMethodView
 import backend.__main__ as config
+import backend.dbConnectors as dbConnectors
 import json
 
 BASE_DOMAIN = "https://theinfoseccorner.com"
@@ -33,3 +34,14 @@ class genTree(HTTPMethodView):
                 return {'name':user.name, "employees": emp}
             else:
                 return emp
+
+class getCampaigns(HTTPMethodView):
+    async def get(self, req):
+        db = dbConnectors.campaignDB()
+        return response.json(db.getCampaigns())
+
+class getCampaignDetails(HTTPMethodView):
+    async def get(self, req):
+        campaign_id = req.args["campaign_id"][0]
+        db = dbConnectors.phishDB(campaign_id)
+        return response.json(db.getCampaignDetails())
