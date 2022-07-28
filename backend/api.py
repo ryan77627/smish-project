@@ -59,3 +59,8 @@ class getCampaignDetails(HTTPMethodView):
         campaign_id = req.args["campaign_id"][0]
         db = dbConnectors.phishDB(campaign_id)
         return response.json(db.getCampaignDetails())
+
+class getUser(HTTPMethodView):
+    async def get(self, req, uid):
+        us = config.us
+        return response.json(us.get_user(uid))
