@@ -61,6 +61,7 @@ class getCampaignDetails(HTTPMethodView):
         return response.json(db.getCampaignDetails())
 
 class getUser(HTTPMethodView):
-    async def get(self, req, uid):
+    async def get(self, req):
+        uid = req.args["uid"][0]
         us = config.us
         return response.json(us.get_user(uid))
