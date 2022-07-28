@@ -14,6 +14,11 @@ const (
 	TPL  = "template/*.html"
 )
 
+type Hierarchy struct {
+	Name      string   `json:"name"`
+	Employees []string `json:"employees"`
+}
+
 type Full struct {
 	Sidebar  Side
 	Network  Net
@@ -39,6 +44,17 @@ func root(w http.ResponseWriter, r *http.Request) {
 
 func console(w http.ResponseWriter, r *http.Request) {
 	tpl := template.Must(template.ParseGlob(TPL))
+
+	// var thierarhy Hierarchy
+
+	// test := util.GetOrg("Kristy Preston")
+
+	// err := json.Unmarshal([]byte(test), &thierarhy)
+	// util.Check(err)
+
+	// fmt.Printf("%s", thierarhy.Name)
+	// fmt.Printf("%d", len(thierarhy.Employees))
+
 	full := Full{
 		Sidebar: Side{
 			Navs: []string{"Home", "Dashboard"},
@@ -48,6 +64,7 @@ func console(w http.ResponseWriter, r *http.Request) {
 	}
 	// full := Full.Sidebar
 	tpl.ExecuteTemplate(w, "admin-console", full)
+
 }
 
 func preview(w http.ResponseWriter, r *http.Request) {
