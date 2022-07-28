@@ -7,6 +7,16 @@ pyvenv.cfg
 
 # Creds
 creds.py
+.env
 
 # Log Testing
 *.logs
+
+# Python venv
+env/
+
+test*
+phish_db
+
+# Compiled
+main.o
